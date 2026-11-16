@@ -10,17 +10,21 @@ meant for the domain **nomadcatsworld.com**. Plain HTML, CSS and one small scrip
 build step, no dependencies. Keep it that way unless Angelo asks otherwise.
 
 ```
-index.html          the page
-privacy.html        privacy policy (draft, needs legal review)
-css/styles.css      all styles; design tokens at the top
-js/main.js          store links (placeholder) + waiting-list form (Netlify Forms)
-assets/img/         screenshots and renders taken from the real app
-assets/fonts/       the two web fonts, self-hosted
-assets/favicon.svg
-design/             reference pictures of the finished page (desktop and phone)
+sito/                     the published folder: Netlify serves only this (see netlify.toml)
+  index.html              the page
+  privacy.html            privacy policy (draft, needs legal review)
+  css/styles.css          all styles; design tokens at the top
+  js/main.js              store links (placeholder) + waiting-list form (Netlify Forms)
+  assets/img/             screenshots and renders taken from the real app
+  assets/fonts/           the two web fonts, self-hosted
+  assets/favicon.svg
+design/                   reference pictures of the page (desktop and phone); not published
+netlify.toml              publish = "sito"
 ```
 
-To look at it: `python3 -m http.server 8000` in this folder, then open http://localhost:8000.
+Anything that must not be online (these notes, `LEGGIMI.md`, `design/`) stays outside `sito/`.
+
+To look at it: `python3 -m http.server 8000 --directory sito`, then open http://localhost:8000.
 
 ## What the game is (use this for any new copy)
 
@@ -32,8 +36,11 @@ To look at it: `python3 -m http.server 8000` in this folder, then open http://lo
 - Later you set it free wherever you are. Its passport records every place it has lived.
 - Every cat is male or female, has a temperament, three traits, a favourite thing and a short story.
   About one cat in three is of one of 45 recognised breeds; the others are mixed breed.
+- Since version 0.18: when you set a cat free, the spot where you leave it, its name and its
+  passport (places and dates of its adoptions) go into a public database, visible to other
+  players nearby. The privacy page describes this; keep the two in step.
 - Decided but **not built yet**: two cats at home for free; a yearly "Nomad Pass" (USD 14.95) for up
-  to 50 cats; cats shared between players through a server. Do not describe these as available.
+  to 50 cats. Do not describe these as available.
 
 Never claim anything the app does not do. If unsure, ask Angelo.
 
@@ -64,21 +71,20 @@ Never claim anything the app does not do. If unsure, ask Angelo.
    detection is enabled in the Netlify project (Forms → Enable form detection). Locally the form
    answers "Sorry, that did not go through", which is expected.
 3. **Privacy page.** `privacy.html` is a plain-language draft. It still needs a lawyer's review,
-   and Angelo must confirm the statements about the app (location, camera and microphone stay on
-   the phone; no account; no analytics) and the promise to delete the list within twelve months.
-4. **Contact address.** `hello@nomadcatsworld.com` must exist before launch; the privacy page
-   gives it as the contact for data requests.
+   The statements about the app were given by Angelo for version 0.18; update the page whenever
+   the app changes what it shares. The waiting list is deleted within twelve months.
+4. **Contact address.** `info@1000feetabove.com`, in the footer and on the privacy page.
 5. **Price.** Removed from the page because it is not built. Put a sentence back in the passport
    section only when it exists in the app, with wording and price confirmed by Angelo.
 6. **Social preview.** `assets/img/og.jpg` (1200×630) is composed from the real home screenshot.
    `og:url`, `og:image` and the canonical links assume the domain `https://nomadcatsworld.com`.
 7. **The journey example** (Olive, Concorezzo → Kyoto) is invented and labelled as an example.
-   Cats shared between players are not built: do not write that other people find or adopt
-   your cat.
+   The page copy was toned down when sharing between players did not exist; with 0.18 it does,
+   so ask Angelo before writing again that other people find the cats you set free.
 
 ## Suggested next steps
 
-1. Angelo: enable form detection in Netlify, create the mailbox, get the privacy page reviewed.
+1. Angelo: enable form detection in Netlify, get the privacy page reviewed.
 2. After launch: real store links, official badges, an App Store "smart banner" meta tag
    (`<meta name="apple-itunes-app" content="app-id=...">`).
 

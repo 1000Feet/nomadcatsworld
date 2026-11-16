@@ -4,11 +4,11 @@ Una pagina web pronta da rifinire, più le istruzioni per Claude Code.
 
 ## Guardarla subito
 
-Apri `index.html` con un doppio clic. Per vederla come sarà online, nel Terminale:
+La pagina sta nella cartella `sito/`, l'unica che viene pubblicata. Apri `sito/index.html` con un doppio clic. Per vederla come sarà online, nel Terminale:
 
 ```bash
 cd /percorso/di/questa/cartella
-python3 -m http.server 8000
+python3 -m http.server 8000 --directory sito
 ```
 
 poi apri http://localhost:8000 nel browser.
@@ -23,8 +23,7 @@ Le immagini in `design/` mostrano la pagina finita, su computer e su telefono.
 
 ## Cosa è finto, per ora
 
-- **I pulsanti App Store e Google Play** non portano da nessuna parte: scorrono fino al modulo. I link veri si mettono in `js/main.js`. Prima della pubblicazione vanno sostituiti con i badge ufficiali di Apple e Google.
-- **L'indirizzo** hello@nomadcatsworld.com non esiste ancora: va creato, perché la pagina Privacy lo indica come contatto.
+- **I pulsanti App Store e Google Play** non portano da nessuna parte: scorrono fino al modulo. I link veri si mettono in `sito/js/main.js`. Prima della pubblicazione vanno sostituiti con i badge ufficiali di Apple e Google.
 - **Il viaggio di "Olive"** è un esempio inventato, e la pagina lo dice.
 
 ## Cosa è pronto ma va controllato da te
