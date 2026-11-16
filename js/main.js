@@ -1,0 +1,50 @@
+// Nomad Cats World — the only script on the page.
+
+// 1. Store buttons: PLACEHOLDER until the app is published. Put the real links here.
+const STORE_LINKS = {
+  apple: "",   // e.g. "https://apps.apple.com/app/id0000000000"
+  google: ""   // e.g. "https://play.google.com/store/apps/details?id=com.nomadcatsworld.app"
+};
+
+document.querySelectorAll(".store").forEach((button) => {
+  const link = STORE_LINKS[button.dataset.store];
+  if (link) {
+    button.href = link;
+    button.removeAttribute("aria-disabled");
+    const small = button.querySelector("small");
+    if (small) small.textContent = button.dataset.store === "apple" ? "Download on the" : "Get it on";
+  } else {
+    // Not published yet: the button scrolls to the waiting list instead.
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      document.getElementById("get").scrollIntoView();
+      document.getElementById("email").focus({ preventScroll: true });
+    });
+  }
+});
+
+// 2. Waiting list: sent to Netlify Forms. Without JavaScript the form still posts normally.
+const form = document.querySelector(".notify");
+if (form) {
+  const status = form.querySelector(".notify-status");
+  const button = form.querySelector("button");
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    button.disabled = true;
+    status.textContent = "Sending…";
+    try {
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(new FormData(form)).toString()
+      });
+      if (!response.ok) throw new Error(String(response.status));
+      form.reset();
+      status.textContent = "Thank you. We will write once, on the day it opens.";
+    } catch (error) {
+      status.textContent = "Sorry, that did not go through. Please try again in a moment.";
+    } finally {
+      button.disabled = false;
+    }
+  });
+}
