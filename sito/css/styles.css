@@ -142,10 +142,13 @@ p { margin: 0; }
 .breeds { list-style: none; margin: clamp(2rem, 5vw, 3.5rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
 .breeds li { background: var(--paper); border-radius: 1.25rem; overflow: hidden; }
 .breeds img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
-.breeds span { display: block; padding: .15rem 1rem .85rem; font: 400 1.2rem/1.2 var(--display); }
-.story { margin: clamp(2.5rem, 6vw, 4.5rem) 0 0; max-width: 46rem; }
-.story p { font: 400 clamp(1.5rem, 2.8vw, 2.25rem)/1.25 var(--display); }
-.story footer { margin-top: 1rem; font-size: .95rem; color: var(--ink-soft); }
+.rarity-block { margin-top: clamp(2.5rem, 6vw, 4.5rem); max-width: 40rem; }
+.rarity-block > p { margin-top: .6rem; color: var(--ink-soft); }
+.rarity { margin: 1.5rem 0 0; padding: 0; }
+.rarity div { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .7rem 0; border-bottom: 1px solid #D6CFC0; }
+.rarity div:first-child { border-top: 1px solid #D6CFC0; }
+.rarity dt { font: 400 1.25rem/1.2 var(--display); }
+.rarity dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
 
 /* Passport */
 .passport {

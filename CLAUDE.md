@@ -26,21 +26,26 @@ Anything that must not be online (these notes, `LEGGIMI.md`, `design/`) stays ou
 
 To look at it: `python3 -m http.server 8000 --directory sito`, then open http://localhost:8000.
 
-## What the game is (use this for any new copy)
+## What the game is (use this for any new copy; facts confirmed by Angelo, November 2026)
 
-- Stray cats are scattered over the real map. A cat near you meows (a notification).
-- The map shows a circle about 50 m wide around each cat, never its exact spot.
-- Within 100 m you can call the cat with your voice ("ts ts ts"); it walks towards you.
-- When it is close you meet it in augmented reality, life-size, on a cushion. You can stroke it.
-- You can photograph it (album) or adopt it. You name an adopted cat once; the name can never change.
-- Later you set it free wherever you are. Its passport records every place it has lived.
-- Every cat is male or female, has a temperament, three traits, a favourite thing and a short story.
-  About one cat in three is of one of 45 recognised breeds; the others are mixed breed.
-- Since version 0.18: when you set a cat free, the spot where you leave it, its name and its
-  passport (places and dates of its adoptions) go into a public database, visible to other
-  players nearby. The privacy page describes this; keep the two in step.
-- Decided but **not built yet**: two cats at home for free; a yearly "Nomad Pass" (USD 14.95) for up
-  to 50 cats. Do not describe these as available.
+- There are 21,000,000 cats, each with a number and a look that exists only once.
+- Six rarity levels with fixed quantities: Common 12,598,990 · Uncommon 5,880,000 · Rare 2,100,000 ·
+  Very rare 420,000 · Extremely rare 1,000 · Most rare 10.
+- The cats move slowly on the real map. You find them by walking and call them with your voice.
+  With location "Always", the phone tells you when a cat is within about 100 m, app closed.
+- The camera shows the cat in your room; photos stay on the phone. The microphone only hears that
+  you are calling; nothing is recorded.
+- You adopt a cat by giving it a name that never changes. Its number and name go into a public
+  register of all 21,000,000 cats.
+- A cat set free stays in the world: someone else can adopt it. Its name, passport (places and
+  dates of adoptions) and the spot where it was left are shared with other players. The passport
+  counts the kilometres travelled.
+- Nomad Pass: 2 cats free, up to 50 with the subscription at $14.95 a year, handled by Apple.
+- No account, no advertising, no analytics. Adopted cats are saved on the phone and in iCloud.
+- Never write about NFTs, crypto, tokens, monetary value or investment.
+- The app is not available yet: the store buttons stay placeholders.
+- Not confirmed for the current app (do not use without asking): breeds, temperament, traits,
+  stories on the cat's card.
 
 Never claim anything the app does not do. If unsure, ask Angelo.
 
@@ -70,17 +75,15 @@ Never claim anything the app does not do. If unsure, ask Angelo.
    box and a honeypot field. It only works once the site is deployed on Netlify **and** form
    detection is enabled in the Netlify project (Forms → Enable form detection). Locally the form
    answers "Sorry, that did not go through", which is expected.
-3. **Privacy page.** `privacy.html` is a plain-language draft. It still needs a lawyer's review,
-   The statements about the app were given by Angelo for version 0.18; update the page whenever
-   the app changes what it shares. The waiting list is deleted within twelve months.
-4. **Contact address.** `info@1000feetabove.com`, in the footer and on the privacy page.
-5. **Price.** Removed from the page because it is not built. Put a sentence back in the passport
-   section only when it exists in the app, with wording and price confirmed by Angelo.
+3. **Privacy page.** The app opens `/privacy.html` from its subscription screen and Apple checks it
+   in review: never move or rename it. It contains only the points Angelo listed (November 2026);
+   do not add others without him. It does not yet mention the waiting list or the hosting.
+4. **Contact address.** `angelo@angelomagni.it`, in the footer and on the privacy page.
+5. **Price.** Nomad Pass, $14.95 a year, up to 50 cats; 2 cats free.
 6. **Social preview.** `assets/img/og.jpg` (1200×630) is composed from the real home screenshot.
    `og:url`, `og:image` and the canonical links assume the domain `https://nomadcatsworld.com`.
-7. **The journey example** (Olive, Concorezzo → Kyoto) is invented and labelled as an example.
-   The page copy was toned down when sharing between players did not exist; with 0.18 it does,
-   so ask Angelo before writing again that other people find the cats you set free.
+7. **The journey example** (Olive, her number, Concorezzo → Kyoto, the kilometres) is invented and
+   labelled as an example. The kilometres are straight-line distances between the towns.
 
 ## Suggested next steps
 
