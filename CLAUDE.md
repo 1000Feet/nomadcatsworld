@@ -78,7 +78,7 @@ Never claim anything the app does not do. If unsure, ask Angelo.
 3. **Privacy page.** The app opens `/privacy.html` from its subscription screen and Apple checks it
    in review: never move or rename it. It contains only the points Angelo listed (November 2026);
    do not add others without him. It does not yet mention the waiting list or the hosting.
-4. **Contact address.** `angelo@angelomagni.it`, in the footer and on the privacy page.
+4. **Contact address.** `info@1000feetabove.com`, in the footer and on the privacy page.
 5. **Price.** Nomad Pass, $14.95 a year, up to 50 cats; 2 cats free.
 6. **Social preview.** `assets/img/og.jpg` (1200×630) is composed from the real home screenshot.
    `og:url`, `og:image` and the canonical links assume the domain `https://nomadcatsworld.com`.
