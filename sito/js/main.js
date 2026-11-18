@@ -48,3 +48,29 @@ if (form) {
     }
   });
 }
+
+// 3. Hero video: plays muted on its own, unless the visitor prefers reduced motion.
+//    The two buttons pause/play it and turn the sound on/off.
+const video = document.querySelector(".hero-video video");
+if (video) {
+  const playButton = document.querySelector(".video-play");
+  const soundButton = document.querySelector(".video-sound");
+  const update = () => {
+    const playing = !video.paused;
+    playButton.textContent = playing ? "Pause" : "Play";
+    playButton.setAttribute("aria-pressed", String(playing));
+    soundButton.textContent = video.muted ? "Sound on" : "Sound off";
+    soundButton.setAttribute("aria-pressed", String(!video.muted));
+  };
+  playButton.addEventListener("click", () => { video.paused ? video.play() : video.pause(); });
+  soundButton.addEventListener("click", () => {
+    video.muted = !video.muted;
+    if (!video.muted && video.paused) video.play();
+    update();
+  });
+  ["play", "pause", "volumechange"].forEach((name) => video.addEventListener(name, update));
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    video.play().catch(() => {});
+  }
+  update();
+}

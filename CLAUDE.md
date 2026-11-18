@@ -17,6 +17,7 @@ sito/                     the published folder: Netlify serves only this (see ne
   js/main.js              store links (placeholder) + waiting-list form (Netlify Forms)
   assets/img/             screenshots and renders taken from the real app
   assets/fonts/           the two web fonts, self-hosted
+  assets/video/           hero film (promo.mp4) and its poster frame
   assets/favicon.svg
 design/                   reference pictures of the page (desktop and phone); not published
 netlify.toml              publish = "sito"
@@ -82,6 +83,10 @@ Never claim anything the app does not do. If unsure, ask Angelo.
 5. **Price.** Nomad Pass, $14.95 a year, up to 50 cats; 2 cats free.
 6. **Social preview.** `assets/img/og.jpg` (1200×630) is composed from the real home screenshot.
    `og:url`, `og:image` and the canonical links assume the domain `https://nomadcatsworld.com`.
+8. **Hero video.** `assets/video/promo.mp4` is Angelo's promo film (v2), re-encoded at 720×1280 and
+   cut at 65 s: the original's last 10 s say "The total is on your account" and "Available for
+   iPhone and Android", which are not true. If Angelo sends a new cut, re-encode it the same way
+   (H.264, faststart, muted autoplay; it does not autoplay with reduced motion).
 7. **The journey example** (Olive, her number, Concorezzo → Kyoto, the kilometres) is invented and
    labelled as an example. The kilometres are straight-line distances between the towns.
 
