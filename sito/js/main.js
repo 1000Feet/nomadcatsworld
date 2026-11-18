@@ -50,9 +50,10 @@ if (form) {
 }
 
 // 3. Hero video: starts on its own with the sound on, unless the visitor prefers reduced motion.
-//    Browsers usually refuse to play sound before the visitor has touched the page: in that case
-//    the video starts muted and the sound comes on at the first tap, click or key press.
-//    The two buttons pause/play it and turn the sound on/off.
+//    Safari and Chrome refuse to play sound before the visitor has touched the page. In that case
+//    the video starts muted and the sound comes on at the first tap, click or key press anywhere.
+//    (A touch only counts when the finger is lifted, and not after a scroll: that is the browsers'
+//    rule, so we listen to pointerup/touchend/click, not pointerdown.)
 const video = document.querySelector(".hero-video video");
 if (video) {
   const playButton = document.querySelector(".video-play");
@@ -62,33 +63,43 @@ if (video) {
     const playing = !video.paused;
     playButton.textContent = playing ? "Pause" : "Play";
     playButton.setAttribute("aria-pressed", String(playing));
-    soundButton.textContent = video.muted ? "Sound on" : "Sound off";
-    soundButton.setAttribute("aria-pressed", String(!video.muted));
+    soundButton.textContent = video.muted ? "Tap for sound" : "Mute";
+    soundButton.setAttribute("aria-pressed", String(video.muted));
   };
-  playButton.addEventListener("click", () => { video.paused ? video.play() : video.pause(); });
+
+  // Turn the sound on and keep playing; if the browser still refuses, go back to muted playback.
+  const playWithSound = () => {
+    video.muted = false;
+    return video.play().catch(() => {
+      video.muted = true;
+      return video.play().catch(() => {});
+    });
+  };
+
+  const gestureEvents = ["pointerup", "touchend", "click", "keydown"];
+  const onFirstGesture = (event) => {
+    if (soundChosen) return stopListening();
+    if (event.target.closest && event.target.closest(".video-controls")) return; // the buttons decide
+    if (video.paused) return;
+    playWithSound().then(() => { if (!video.muted) stopListening(); });
+  };
+  const stopListening = () =>
+    gestureEvents.forEach((name) => document.removeEventListener(name, onFirstGesture, true));
+  const startListening = () =>
+    gestureEvents.forEach((name) => document.addEventListener(name, onFirstGesture, true));
+
+  playButton.addEventListener("click", () => {
+    if (video.paused) playWithSound(); else video.pause();
+  });
   soundButton.addEventListener("click", () => {
     soundChosen = true;
-    video.muted = !video.muted;
-    if (!video.muted && video.paused) video.play();
-    update();
+    stopListening();
+    if (video.muted) playWithSound(); else video.muted = true;
   });
   ["play", "pause", "volumechange"].forEach((name) => video.addEventListener(name, update));
 
-  const unmuteOnFirstGesture = () => {
-    const unmute = (event) => {
-      if (event.target.closest && event.target.closest(".video-controls")) return; // the buttons decide
-      if (!soundChosen && !video.paused) video.muted = false;
-    };
-    ["pointerdown", "keydown"].forEach((name) =>
-      document.addEventListener(name, unmute, { once: true, capture: true }));
-  };
-
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    video.muted = false;
-    video.play().catch(() => {
-      video.muted = true;
-      video.play().then(unmuteOnFirstGesture).catch(() => {});
-    });
+    playWithSound().then(() => { if (video.muted) startListening(); });
   } else {
     video.muted = false; // when the visitor presses Play, it plays with sound
   }
