@@ -83,9 +83,11 @@ Never claim anything the app does not do. If unsure, ask Angelo.
 5. **Price.** Nomad Pass, $14.95 a year, up to 50 cats; 2 cats free.
 6. **Social preview.** `assets/img/og.jpg` (1200×630) is composed from the real home screenshot.
    `og:url`, `og:image` and the canonical links assume the domain `https://nomadcatsworld.com`.
-8. **Hero video.** `assets/video/promo.mp4` is Angelo's promo film (v2), re-encoded at 720×1280 and
-   cut at 65 s: the original's last 10 s say "The total is on your account" and "Available for
-   iPhone and Android", which are not true. If Angelo sends a new cut, re-encode it the same way
+8. **Hero video.** `assets/video/promo.mp4` is Angelo's promo film (v2), full length (75 s),
+   re-encoded at 720×1280. Two lines of the original are not true and were edited out with ffmpeg:
+   "The total is on your account." (covered, 64.8–70.2 s) and the end pill "Available for iPhone and
+   Android", replaced from 71.6 s by a pill "Coming soon to iPhone" in the same style. When the app
+   is out, ask Angelo for a new end card. If he sends a new cut, re-encode it the same way
    (H.264, faststart). It never autoplays: a big play button starts it from the beginning with
    sound (browsers only allow sound after a tap); Pause and Mute appear below it while it runs.
 7. **The journey example** (Olive, her number, Concorezzo → Kyoto, the kilometres) is invented and
