@@ -49,12 +49,15 @@ if (form) {
   });
 }
 
-// 3. Hero video: plays muted on its own, unless the visitor prefers reduced motion.
+// 3. Hero video: starts on its own with the sound on, unless the visitor prefers reduced motion.
+//    Browsers usually refuse to play sound before the visitor has touched the page: in that case
+//    the video starts muted and the sound comes on at the first tap, click or key press.
 //    The two buttons pause/play it and turn the sound on/off.
 const video = document.querySelector(".hero-video video");
 if (video) {
   const playButton = document.querySelector(".video-play");
   const soundButton = document.querySelector(".video-sound");
+  let soundChosen = false; // true once the visitor has used the sound button
   const update = () => {
     const playing = !video.paused;
     playButton.textContent = playing ? "Pause" : "Play";
@@ -64,13 +67,30 @@ if (video) {
   };
   playButton.addEventListener("click", () => { video.paused ? video.play() : video.pause(); });
   soundButton.addEventListener("click", () => {
+    soundChosen = true;
     video.muted = !video.muted;
     if (!video.muted && video.paused) video.play();
     update();
   });
   ["play", "pause", "volumechange"].forEach((name) => video.addEventListener(name, update));
+
+  const unmuteOnFirstGesture = () => {
+    const unmute = (event) => {
+      if (event.target.closest && event.target.closest(".video-controls")) return; // the buttons decide
+      if (!soundChosen && !video.paused) video.muted = false;
+    };
+    ["pointerdown", "keydown"].forEach((name) =>
+      document.addEventListener(name, unmute, { once: true, capture: true }));
+  };
+
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    video.play().catch(() => {});
+    video.muted = false;
+    video.play().catch(() => {
+      video.muted = true;
+      video.play().then(unmuteOnFirstGesture).catch(() => {});
+    });
+  } else {
+    video.muted = false; // when the visitor presses Play, it plays with sound
   }
   update();
 }

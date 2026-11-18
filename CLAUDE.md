@@ -86,7 +86,8 @@ Never claim anything the app does not do. If unsure, ask Angelo.
 8. **Hero video.** `assets/video/promo.mp4` is Angelo's promo film (v2), re-encoded at 720×1280 and
    cut at 65 s: the original's last 10 s say "The total is on your account" and "Available for
    iPhone and Android", which are not true. If Angelo sends a new cut, re-encode it the same way
-   (H.264, faststart, muted autoplay; it does not autoplay with reduced motion).
+   (H.264, faststart). It starts with the sound on; where the browser blocks sound it starts muted
+   and unmutes at the first tap. It does not autoplay with reduced motion.
 7. **The journey example** (Olive, her number, Concorezzo → Kyoto, the kilometres) is invented and
    labelled as an example. The kilometres are straight-line distances between the towns.
 
