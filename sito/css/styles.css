@@ -90,6 +90,15 @@ p { margin: 0; }
 .hero-phone { transform: rotate(2.5deg); }
 .hero-video { position: relative; margin-bottom: 3.25rem; }
 .hero-video video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; border-radius: 2.1rem; background: var(--paper); }
+.video-start {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: 5rem; height: 5rem; border-radius: 50%; border: 0; padding: 0; cursor: pointer;
+  display: grid; place-items: center; background: var(--paper); color: var(--ink);
+  box-shadow: 0 0 0 .35rem rgba(47, 73, 63, .35), 0 1rem 2rem -.75rem rgba(0, 0, 0, .45);
+}
+.video-start:hover { background: var(--white); }
+.video-start svg { width: 2.2rem; height: 2.2rem; fill: currentColor; margin-left: .25rem; }
+.video-start[hidden], .video-controls[hidden] { display: none; }
 .video-controls { position: absolute; left: 0; right: 0; top: calc(100% + 1rem); display: flex; justify-content: center; gap: .5rem; }
 .video-controls button {
   font: 600 .85rem/1 var(--text); color: var(--paper); background: var(--ink);

@@ -86,10 +86,8 @@ Never claim anything the app does not do. If unsure, ask Angelo.
 8. **Hero video.** `assets/video/promo.mp4` is Angelo's promo film (v2), re-encoded at 720×1280 and
    cut at 65 s: the original's last 10 s say "The total is on your account" and "Available for
    iPhone and Android", which are not true. If Angelo sends a new cut, re-encode it the same way
-   (H.264, faststart). It tries to start with the sound on. Safari and Chrome block sound until the
-   visitor taps, clicks or presses a key, so it usually starts muted and the sound comes on at the
-   first tap anywhere (pointerup/touchend/click/keydown: pointerdown does not count on touch).
-   It does not autoplay with reduced motion.
+   (H.264, faststart). It never autoplays: a big play button starts it from the beginning with
+   sound (browsers only allow sound after a tap); Pause and Mute appear below it while it runs.
 7. **The journey example** (Olive, her number, Concorezzo → Kyoto, the kilometres) is invented and
    labelled as an example. The kilometres are straight-line distances between the towns.
 
